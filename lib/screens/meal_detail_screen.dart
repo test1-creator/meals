@@ -7,10 +7,10 @@ class MealDetailScreen extends StatelessWidget {
   static const routeName = '/meal-detail';
   final ScrollController _scrollControllerOne = ScrollController();
   final ScrollController _scrollControllerTwo = ScrollController();
-  // final Function toggleFavorite;
-  // final Function isFavorite;
-  //
-  // MealDetailScreen(this.toggleFavorite, this.isFavorite);
+  final Function toggleFavorite;
+  final Function isFavorite;
+
+  MealDetailScreen(this.toggleFavorite, this.isFavorite);
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,6 @@ class MealDetailScreen extends StatelessWidget {
         ),
       );
     }
-
 
 
     return Scaffold(
@@ -112,10 +111,8 @@ class MealDetailScreen extends StatelessWidget {
 
       floatingActionButton: FloatingActionButton(
         backgroundColor: kBtnColor,
-        child: Icon(Icons.star, color: Colors.red,),
-        onPressed: () {
-          // toggleFavorite(mealId);
-        },
+        child: Icon(isFavorite(mealId) ? Icons.star : Icons.star_border, color: kTextColor,),
+        onPressed: () => toggleFavorite(mealId),
       ),
     );
   }

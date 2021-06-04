@@ -3,16 +3,16 @@ import 'package:meals/constants/styles.dart';
 import 'package:meals/screens/filters_screen.dart';
 
 class MainDrawer extends StatelessWidget {
-  // Widget buildListTile(String title, IconData icon, Function tapHandler) {
-  //   return ListTile(
-  //     leading: Icon(icon, size: 26, color: kTextColor,),
-  //     title: Text(
-  //       title,
-  //       style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: kTextColor),
-  //     ),
-  //     onTap: tapHandler,
-  //   );
-  // }
+  Widget buildListTile(String title, IconData icon, Function() tapHandler) {
+    return ListTile(
+      leading: Icon(icon, size: 26, color: kTextColor,),
+      title: Text(
+        title,
+        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: kTextColor),
+      ),
+      onTap: tapHandler,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,41 +37,13 @@ class MainDrawer extends StatelessWidget {
           ),
 
           //Drawer items
-          // buildListTile("Meals", Icons.restaurant),
+          buildListTile("Meals", Icons.restaurant, () {
+            Navigator.pushReplacementNamed(context, '/');
+          }),
 
-          // buildListTile("Filters", Icons.settings),
-
-          ListTile(
-            leading: Icon(
-              Icons.restaurant,
-              size: 26,
-              color: kTextColor,
-            ),
-            title: Text(
-              "Meals",
-              style: TextStyle(
-                  fontSize: 24, fontWeight: FontWeight.bold, color: kTextColor),
-            ),
-            onTap: () {
-              Navigator.pushReplacementNamed(context, '/');
-            },
-          ),
-
-          ListTile(
-            leading: Icon(
-              Icons.settings,
-              size: 26,
-              color: kTextColor,
-            ),
-            title: Text(
-              "Filters",
-              style: TextStyle(
-                  fontSize: 24, fontWeight: FontWeight.bold, color: kTextColor),
-            ),
-            onTap: () {
-              Navigator.pushReplacementNamed(context, FilterScreen.routeName);
-            },
-          ),
+          buildListTile("Filters", Icons.settings, () {
+            Navigator.pushReplacementNamed(context, FilterScreen.routeName);
+          }),
         ],
       ),
     );
